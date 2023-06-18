@@ -22,3 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('mainapp/', include('mainapp.urls')),
 ]
+
+handler404 = pageNotFound

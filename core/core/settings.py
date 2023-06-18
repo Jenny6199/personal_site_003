@@ -26,9 +26,9 @@ with open('core/.shadow', 'r') as key_path:
 SECRET_KEY = s_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
