@@ -24,4 +24,19 @@ class ArticleAdmin(admin.ModelAdmin):
         'created_time',
         'updated_time',
         'visitors_counter',
+        'is_published'
+    ]
+    list_filter = [
+        'category',
+        'author',
+        'created_time',
+        'visitors_counter',
+        'is_published'
+    ]
+    search_fields = [
+        'title',
+    ]
+    date_hierarchy = 'created_time'
+    ordering = [
+        'created_time'
     ]

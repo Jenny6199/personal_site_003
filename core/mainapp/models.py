@@ -29,14 +29,15 @@ class Article(models.Model):
     Model for article for site's mainapp
     """
     # Fields
-    title = models.CharField(max_length=255, verbose_name='заголовок')
+    title = models.CharField(max_length=255, verbose_name='заголовок', blank=False)
     category = models.CharField(max_length=128, blank=False, verbose_name='категория')
     author = models.OneToOneField(Author, on_delete=models.PROTECT, primary_key=True, verbose_name='автор')
     image = models.ImageField(blank=True, upload_to='images/', verbose_name='изображение')
     text = models.TextField(default='', verbose_name='текст статьи', blank=False)
     created_time = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='дата сознания')
     updated_time = models.DateTimeField(auto_now=True, verbose_name='дата обновления')
-    visitors_counter = models.PositiveIntegerField(verbose_name='количество просмотров')
+    visitors_counter = models.PositiveIntegerField(default=0, verbose_name='количество просмотров')
+    is_published = models.BooleanField(default=False, verbose_name='публикация на сайте')
 
     # Metadata
     class Meta:
