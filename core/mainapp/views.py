@@ -1,6 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Author, Article
 
 
 def index(request):
-    return HttpResponse("Hello world from mainapp index")
+    articles = Article.objects.all()
+    context = {
+        'title': 'Главная',
+        'menu': None,
+        'articles': articles,
+    }
+    return render(request, 'mainapp/index.html', context=context)
