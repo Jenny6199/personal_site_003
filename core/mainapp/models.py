@@ -6,8 +6,8 @@ class Author(models.Model):
     Model for author for site's mainapp
     """
     # Fields
-    name = models.CharField(max_length=62, verbose_name='имя')
     surname = models.CharField(max_length=62, verbose_name='фамилия')
+    name = models.CharField(max_length=62, verbose_name='имя')
     parent_name = models.CharField(max_length=62, verbose_name='отчество', blank=True)
     article_counter = models.PositiveIntegerField(default=0, verbose_name='количество статей')
     speciality = models.CharField(max_length=128, verbose_name='специальность')
