@@ -1,18 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
+    <link type="text/css" href="{% static 'mainapp/css/style.css' %} " rel="stylesheet" />
 </head>
-<body>
+    <body>
+        <div class="wrapper">
+            <!-- Блок верхней части сайта -->
+            <header class="header">
+                {% block header %}
+                <h2 class="block">Header</h2>
+                    <!-- Блок меню -->
+                    {% block menu %}
+                        <h2 class="block">Menu</h2>
+                    {% endblock %}
+                {% endblock %}
+            </header>
 
-<!-- Блок меню -->
-{% block menu %}
-{% endblock %}
+            <!-- Основной блок -->
+            <main class="main">
+                {% block content %}
+                <h2 class="block">Main</h2>
+                {% endblock %}
+            </main>
 
-<!-- Основной блок -->
-{% block content %}
-{% endblock %}
-
-</body>
+            <!-- Блок нижней части сайта -->
+            <footer class="footer">
+                {% block footer %}
+                    <h2 class="block">Footer</h2>
+                {% endblock %}
+            </footer>
+        </div>
+    </body>
 </html>
