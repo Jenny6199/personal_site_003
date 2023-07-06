@@ -3,7 +3,7 @@ from .models import Author, Article
 
 
 @admin.register(Author)
-class AutorAdmin(admin.ModelAdmin):
+class AuthorAdmin(admin.ModelAdmin):
     list_display = [
         'surname',
         'name',

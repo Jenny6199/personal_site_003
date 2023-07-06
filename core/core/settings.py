@@ -34,12 +34,12 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # internal apps
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.admin',  # The admin site.
+    'django.contrib.auth',  # An authentication system.
+    'django.contrib.contenttypes',  # A framework for content types
+    'django.contrib.sessions',  # A session framework
+    'django.contrib.messages',  # A messaging framework
+    'django.contrib.staticfiles',  # A framework for managing static files
     # installed apps
     'mainapp.apps.MainappConfig'
 ]
