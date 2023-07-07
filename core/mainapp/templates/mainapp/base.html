@@ -9,27 +9,25 @@
     <body>
         <div class="wrapper">
             <!-- Блок верхней части сайта -->
-            <header class="header">
+            <header class="header block">
                 {% block header %}
-                <h2 class="block">Header</h2>
+                <h2 class="">Header</h2>
                     <!-- Блок меню -->
                     {% block menu %}
-                        <h2 class="block">Menu</h2>
                     {% endblock %}
                 {% endblock %}
             </header>
 
             <!-- Основной блок -->
-            <main class="main">
+            <main class="main block">
                 {% block content %}
-                <h2 class="block">Main</h2>
                 {% endblock %}
             </main>
 
             <!-- Блок нижней части сайта -->
-            <footer class="footer">
+            <footer class="footer block">
                 {% block footer %}
-                    <h2 class="block">Footer</h2>
+                    <h2 class="">Footer</h2>
                 {% endblock %}
             </footer>
         </div>
