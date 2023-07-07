@@ -1,0 +1,39 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0 auto;
+  text-color: black;
+  height: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+header {
+  background: blue;
+  padding: 10px;
+  text-align: center;
+}
+
+main {
+  flex: 1 1 auto;
+  background: grey;
+  padding: 10px;
+}
+
+footer {
+  background: blue;
+  padding: 10px;
+  text-align: center;
+}
+
+.block {
+    border: 1px solid black;
+    text-color: black;
+}
