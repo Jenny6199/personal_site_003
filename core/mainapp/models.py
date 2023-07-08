@@ -31,7 +31,13 @@ class Article(models.Model):
     # Fields
     title = models.CharField(max_length=255, verbose_name='заголовок', blank=False)
     category = models.CharField(max_length=128, blank=False, verbose_name='категория')
-    author = models.OneToOneField(Author, on_delete=models.PROTECT, primary_key=True, verbose_name='автор')
+    author = models.ForeignKey(Author,
+                               on_delete=models.CASCADE,
+                               verbose_name='автор',
+                               unique=False,
+                               db_constraint=False,
+                               blank=False,
+                               )
     image = models.ImageField(blank=True, upload_to='images/', verbose_name='изображение')
     text = models.TextField(default='', verbose_name='текст статьи', blank=False)
     created_time = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='дата сознания')
