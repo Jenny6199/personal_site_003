@@ -38,7 +38,10 @@ def news(request):
 
 def contacts(request):
     """view for page contacts"""
+    with open('mainapp/templates/mainapp/contactspage_info.txt', 'r') as file:
+        info = file.read()
     context = {
         'title': 'контакты',
+        'info': info
     }
     return render(request, 'mainapp/contacts.html', context=context)
