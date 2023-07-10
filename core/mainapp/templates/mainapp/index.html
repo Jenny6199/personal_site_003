@@ -1,22 +1,15 @@
 {% extends 'mainapp/base.html' %}
-{% block header %}
-    <h2>Главная страница</h2>
-    {% block menu %}
-        {% include 'includes/inc-main-menu.html' %}
-    {% endblock %}
-{% endblock %}
-
 
 {% block content %}
-<h3>Содержимое главной страницы</h3>
-<h4>Список статей</h4>
+<h3>Список статей</h3>
 <ul>
     {% for el in articles %}
     <li>
+        <hr/>
         <h4>{{ el.title }}</h4>
         <h5>{{ el.author }}</h5>
     </li>
-    <hr/>
+
     {% endfor %}
 </ul>
 {% endblock %}

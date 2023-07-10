@@ -47,7 +47,9 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    color: white;
     list-style: none;
+}
 
+.menu-link {
+    text-decoration: none;
 }
