@@ -3,8 +3,16 @@ from .models import Article
 
 
 def index(request):
+    with open(
+            'mainapp/templates/mainapp/mainpage_info.txt',
+            'r',
+            encoding='UTF-8',
+    ) as file:
+        info = file.read()
+
     context = {
         'title': 'главная',
+        'info': info,
     }
     return render(request, 'mainapp/index.html', context=context)
 
