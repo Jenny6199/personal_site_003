@@ -3,6 +3,7 @@ from .models import Article
 
 
 def index(request):
+    """view for mainpage"""
     with open(
             'mainapp/templates/mainapp/mainpage_info.txt',
             'r',
@@ -27,7 +28,16 @@ def articles(request):
     return render(request, 'mainapp/articles.html', context=context)
 
 
+def news(request):
+    """view for page news"""
+    context = {
+        'title': 'новости',
+    }
+    return render(request, 'mainapp/news.html', context=context)
+
+
 def contacts(request):
+    """view for page contacts"""
     context = {
         'title': 'контакты',
     }
