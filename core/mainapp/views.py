@@ -1,15 +1,22 @@
 from django.shortcuts import render
-from .models import Author, Article
+from .models import Article
 
 
 def index(request):
-    articles = Article.objects.all()
     context = {
         'title': 'главная',
-        'menu': None,
-        'articles': articles,
     }
     return render(request, 'mainapp/index.html', context=context)
+
+
+def articles(request):
+    """view for page articles"""
+    articles_list = Article.objects.all()
+    context = {
+        'title': 'статьи',
+        'articles': articles_list,
+    }
+    return render(request, 'mainapp/articles.html', context=context)
 
 
 def contacts(request):

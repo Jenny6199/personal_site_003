@@ -1,0 +1,15 @@
+{% extends 'mainapp/base.html' %}
+
+{% block content %}
+<h3>Список статей</h3>
+<ul>
+    {% for el in articles %}
+    <li>
+        <hr/>
+        <h4>{{ el.title }}</h4>
+        <h5>{{ el.author }}</h5>
+    </li>
+
+    {% endfor %}
+</ul>
+{% endblock %}
