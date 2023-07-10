@@ -6,8 +6,11 @@
     {% for el in articles %}
     <li>
         <hr/>
-        <h4>{{ el.title }}</h4>
-        <h5>{{ el.author }}</h5>
+        <h3>{{ el.title }}</h3>
+        <h4>{{ el.author }}</h4>
+        <p>
+            <a href="{{ el.get_absolute_url }}">Читать статью</a>
+        </p>
     </li>
 
     {% endfor %}

@@ -45,3 +45,13 @@ def contacts(request):
         'info': info
     }
     return render(request, 'mainapp/contacts.html', context=context)
+
+
+def show_article(request, article_id):
+    """view for read_article page"""
+    article = Article.objects.filter(pk=article_id)[0]
+    context = {
+        'title': 'просмотр статьи',
+        'text': article.text,
+    }
+    return render(request, 'mainapp/read_article.html', context=context)
