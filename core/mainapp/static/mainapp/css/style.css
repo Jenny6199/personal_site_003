@@ -51,6 +51,12 @@ footer {
     text-decoration: none;
 }
 
-.menu-link {
+a.main-menu {
+    color: white;
     text-decoration: none;
+    font-family: arial;
+    font-size: 25px;
+    font-weight: 300;
+    font-stretch: condensed;
+    text-shadow: 1px 3px 8px #2400fd;
 }
