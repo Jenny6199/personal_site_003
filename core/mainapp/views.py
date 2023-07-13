@@ -1,6 +1,13 @@
 from django.shortcuts import render
 from .models import Article
 
+main_menu = {
+                'главная': '/',
+                'статьи': '/articles',
+                'новости': '/news',
+                'контакты': '/contacts',
+    }
+
 
 def index(request):
     """view for mainpage"""
@@ -14,6 +21,7 @@ def index(request):
     context = {
         'title': 'главная',
         'info': info,
+        'menu': main_menu,
     }
     return render(request, 'mainapp/index.html', context=context)
 
@@ -24,6 +32,7 @@ def articles(request):
     context = {
         'title': 'статьи',
         'articles': articles_list,
+        'menu': main_menu,
     }
     return render(request, 'mainapp/articles.html', context=context)
 
@@ -32,6 +41,7 @@ def news(request):
     """view for page news"""
     context = {
         'title': 'новости',
+        'menu': main_menu,
     }
     return render(request, 'mainapp/news.html', context=context)
 
@@ -46,7 +56,8 @@ def contacts(request):
         info = file.read()
     context = {
         'title': 'контакты',
-        'info': info
+        'info': info,
+        'menu': main_menu,
     }
     return render(request, 'mainapp/contacts.html', context=context)
 
@@ -57,5 +68,6 @@ def show_article(request, article_id):
     context = {
         'title': 'просмотр статьи',
         'text': article.text,
+        'menu': main_menu,
     }
     return render(request, 'mainapp/read_article.html', context=context)
