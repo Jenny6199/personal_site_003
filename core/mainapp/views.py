@@ -6,13 +6,14 @@ main_menu = {
                 'статьи': '/articles',
                 'новости': '/news',
                 'контакты': '/contacts',
+                'ещё': '/',
     }
 
 
 def index(request):
     """view for mainpage"""
     with open(
-            'mainapp/templates/mainapp/mainpage_info.txt',
+            'mainapp/templates/mainapp/text/mainpage_info.txt',
             'r',
             encoding='UTF-8',
     ) as file:
@@ -49,7 +50,7 @@ def news(request):
 def contacts(request):
     """view for page contacts"""
     with open(
-            'mainapp/templates/mainapp/contactspage_info.txt',
+            'mainapp/templates/mainapp/text/contactspage_info.txt',
             'r',
             encoding='UTF-8',
     ) as file:
