@@ -40,7 +40,12 @@ def articles(request):
 
 
 def add_article(request):
-    form = AddArticleForm()
+    if request.method == 'POST':
+        form = AddArticleForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AddArticleForm()
     context = {
         'title': 'добавление статьи',
         'menu': main_menu,
