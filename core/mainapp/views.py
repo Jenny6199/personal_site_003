@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Article
+from .forms import AddArticleForm
 
 main_menu = {
                 'главная': '/',
@@ -39,11 +40,14 @@ def articles(request):
 
 
 def add_article(request):
+    form = AddArticleForm()
     context = {
         'title': 'добавление статьи',
         'menu': main_menu,
+        'form': form,
     }
     return render(request, 'mainapp/add_article.html', context=context)
+
 
 def news(request):
     """view for page news"""
