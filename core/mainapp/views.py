@@ -38,6 +38,13 @@ def articles(request):
     return render(request, 'mainapp/articles.html', context=context)
 
 
+def add_article(request):
+    context = {
+        'title': 'добавление статьи',
+        'menu': main_menu,
+    }
+    return render(request, 'mainapp/add_article.html', context=context)
+
 def news(request):
     """view for page news"""
     context = {
