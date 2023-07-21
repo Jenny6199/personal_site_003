@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title | title }}</title>
+    <link type="text/css" href="{% static 'mainapp/css/style.css' %} " rel="stylesheet" />
+</head>
+    <body>
+        <div class="wrapper">
+            <!-- Блок верхней части сайта -->
+            <header class="header block">
+                {% block header %}
+                <h2 class="">{{ title | title }}</h2>
+                    <!-- Блок меню -->
+                    {% block menu %}
+                        {% include 'includes/inc-main-menu.html' %}
+                    {% endblock %}
+                {% endblock %}
+            </header>
+
+            <!-- Основной блок -->
+            <main class="main block">
+                {% block content %}
+                {% endblock %}
+            </main>
+
+            <!-- Блок нижней части сайта -->
+            <footer class="footer block">
+                {% block footer %}
+                    <h2 class="">Footer</h2>
+                {% endblock %}
+            </footer>
+        </div>
+    </body>
+</html>

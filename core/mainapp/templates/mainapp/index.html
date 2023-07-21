@@ -1,0 +1,9 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<h3>О сайте</h3>
+<p>
+    {% autoescape on %}
+        {{ info|linebreaks }}
+    {% endautoescape %}
+</p>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% load static %}
+<div class="block">
+          <ul class="menu">
+              {% for key, item in menu.items %}
+                <li><a class="main-menu" href="{{ item }}">{{ key }}</a></li>
+              {% endfor %}
+          </ul>
+</div>

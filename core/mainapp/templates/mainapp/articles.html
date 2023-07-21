@@ -1,0 +1,18 @@
+{% extends 'mainapp/base.html' %}
+
+{% block content %}
+<h3>Список статей</h3>
+<ul>
+    {% for el in articles %}
+    <li>
+        <hr/>
+        <h3>{{ el.title }}</h3>
+        <h4>{{ el.author }}</h4>
+        <p>
+            <a href="{{ el.get_absolute_url }}">Читать статью</a>
+        </p>
+    </li>
+
+    {% endfor %}
+</ul>
+{% endblock %}
