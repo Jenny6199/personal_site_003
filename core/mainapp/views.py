@@ -43,7 +43,7 @@ def articles(request):
 
 def add_article(request):
     if request.method == 'POST':
-        form = AddArticleForm(request.POST)
+        form = AddArticleForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('articles'))
