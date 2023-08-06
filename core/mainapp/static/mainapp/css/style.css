@@ -60,3 +60,8 @@ a.main-menu {
     font-stretch: condensed;
     text-shadow: 1px 3px 8px #2400fd;
 }
+
+.form_control {
+    border: 1px solid blue;
+    font-size: 14px;
+}
