@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render
 from .models import Article
 from .forms import AddArticleForm
@@ -44,6 +46,7 @@ def add_article(request):
         form = AddArticleForm(request.POST)
         if form.is_valid():
             form.save()
+            return HttpResponseRedirect(reverse('articles'))
     else:
         form = AddArticleForm()
     context = {
