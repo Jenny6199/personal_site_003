@@ -3,6 +3,10 @@ from .models import Article
 
 
 class AddArticleForm(forms.ModelForm):
+    """
+    This form create new article.
+    Based on forms.ModelForm
+    """
     class Meta:
         model = Article
         fields = [

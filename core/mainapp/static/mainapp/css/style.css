@@ -65,3 +65,10 @@ a.main-menu {
     border: 1px solid blue;
     font-size: 14px;
 }
+
+.simple_card {
+    border: 1px solid black;
+    background-color: white;
+    margin: 16px;
+    padding: 16px;
+}
