@@ -2,7 +2,11 @@
 
 {% block content %}
 <
-<h3>Список статей</h3>
+<div class="article_menu">
+    <h3>Список статей</h3>
+    <h3><a href="{% url 'add_article' %}">Добавить статью</a></h3>
+</div>
+
 <ul class="no_marker_menu">
     {% for el in articles %}
     <li>
@@ -18,5 +22,4 @@
     </li>
     {% endfor %}
 </ul>
-<h3><a href="{% url 'add_article' %}">Добавить статью</a></h3>
 {% endblock %}

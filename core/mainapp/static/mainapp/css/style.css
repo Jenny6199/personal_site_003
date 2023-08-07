@@ -78,3 +78,9 @@ a.main-menu {
 .no_marker_menu {
     list-style: none;
 }
+
+.article_menu {
+    display: flex;
+    flex-direction:  row;
+    justify-content: space-between;
+}
