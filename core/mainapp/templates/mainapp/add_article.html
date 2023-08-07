@@ -1,0 +1,17 @@
+{% extends 'mainapp/base.html' %}
+
+{% block content %}
+    <h3>{{ title | capfirst }}</h3>
+    <div class="simple_card">
+        <form
+            action="{% url 'add_article' %}"
+            method="post"
+            enctype="multipart/form-data"
+        >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+
+{% endblock %}

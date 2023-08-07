@@ -1,5 +1,8 @@
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render
 from .models import Article
+from .forms import AddArticleForm
 
 main_menu = {
                 'главная': '/',
@@ -36,6 +39,22 @@ def articles(request):
         'menu': main_menu,
     }
     return render(request, 'mainapp/articles.html', context=context)
+
+
+def add_article(request):
+    if request.method == 'POST':
+        form = AddArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('articles'))
+    else:
+        form = AddArticleForm()
+    context = {
+        'title': 'добавление статьи',
+        'menu': main_menu,
+        'form': form,
+    }
+    return render(request, 'mainapp/add_article.html', context=context)
 
 
 def news(request):
