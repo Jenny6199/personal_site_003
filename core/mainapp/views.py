@@ -85,6 +85,8 @@ def contacts(request):
 def show_article(request, article_id):
     """view for read_article page"""
     article = Article.objects.filter(pk=article_id)[0]
+    article.visitors_counter += 1
+    article.save()
     context = {
         'title': 'просмотр статьи',
         'text': article.text,
