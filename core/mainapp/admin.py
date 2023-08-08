@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import Author, Article
+from .models import Author, Article, ArticleCategory
 
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
+    """Admin-panel indications for table Author"""
     list_display = [
         'surname',
         'name',
@@ -12,10 +13,12 @@ class AuthorAdmin(admin.ModelAdmin):
         'speciality',
         'registered_at',
     ]
+    prepopulated_fields = {'slug': ('surname', 'name',)}
 
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
+    """Admin-panel indications for table Article"""
     list_display = [
         'title',
         'category',
@@ -40,3 +43,12 @@ class ArticleAdmin(admin.ModelAdmin):
     ordering = [
         'created_time'
     ]
+
+
+@admin.register(ArticleCategory)
+class ArticleCategoryAdmin(admin.ModelAdmin):
+    """Admin-panel indications for table ArticleCategory"""
+    list_display = ['name', 'slug']
+    list_filter = ['name']
+    search_fields = ['name']
+    prepopulated_fields = {'slug': ('name',)}

@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Article
 from .forms import AddArticleForm
 
@@ -91,5 +91,6 @@ def show_article(request, article_id):
         'title': 'просмотр статьи',
         'text': article.text,
         'menu': main_menu,
+        'selected_category': article.category,
     }
     return render(request, 'mainapp/read_article.html', context=context)

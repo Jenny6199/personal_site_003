@@ -2,6 +2,20 @@ from django.db import models
 from django.urls import reverse
 
 
+class ArticleCategory(models.Model):
+    """Model for separate articles by categories"""
+    name = models.CharField(max_length=255, verbose_name='cat_name')
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='cat_slug')
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'категория статьи'
+        verbose_name_plural = 'категории статей'
+
+    def __str__(self):
+        return f'{self.name}'
+
+
 class Author(models.Model):
     """
     Model for author for site's mainapp
@@ -10,6 +24,7 @@ class Author(models.Model):
     surname = models.CharField(max_length=62, verbose_name='фамилия')
     name = models.CharField(max_length=62, verbose_name='имя')
     parent_name = models.CharField(max_length=62, verbose_name='отчество', blank=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='author_URL')
     article_counter = models.PositiveIntegerField(default=0, verbose_name='количество статей')
     speciality = models.CharField(max_length=128, verbose_name='специальность')
     registered_at = models.DateTimeField(auto_now_add=True, verbose_name='дата регистрации')
@@ -31,7 +46,8 @@ class Article(models.Model):
     """
     # Fields
     title = models.CharField(max_length=255, verbose_name='заголовок', blank=False)
-    category = models.CharField(max_length=128, blank=False, verbose_name='категория')
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='article_URL')
+    category = models.ForeignKey(ArticleCategory, on_delete=models.PROTECT, null=True, verbose_name='категория')
     author = models.ForeignKey(Author,
                                on_delete=models.CASCADE,
                                verbose_name='автор',
