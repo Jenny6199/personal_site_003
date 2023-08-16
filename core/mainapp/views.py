@@ -82,9 +82,9 @@ def contacts(request):
     return render(request, 'mainapp/contacts.html', context=context)
 
 
-def show_article(request, article_id):
+def show_article(request, article_slug):
     """view for read_article page"""
-    article = Article.objects.filter(pk=article_id)[0]
+    article = get_object_or_404(Article, slug=article_slug)
     article.visitors_counter += 1
     article.save()
     context = {

@@ -43,6 +43,7 @@ class ArticleAdmin(admin.ModelAdmin):
     ordering = [
         'created_time'
     ]
+    prepopulated_fields = {'slug': ('title',)}
 
 
 @admin.register(ArticleCategory)

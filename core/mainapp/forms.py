@@ -11,6 +11,7 @@ class AddArticleForm(forms.ModelForm):
         model = Article
         fields = [
             'title',
+            'slug',
             'category',
             'author',
             'image',
