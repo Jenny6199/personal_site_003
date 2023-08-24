@@ -67,20 +67,31 @@ a.main-menu {
 }
 
 .simple_card {
-    border: 1px solid black;
-    border-radius: 25px;
+border: 1px solid black;
+    border-radius: 8px;
     text-align: center;
     background-color: white;
-    margin: 16px;
-    padding: 16px;
+    margin: 5px;
+    padding: 10px;
 }
 
 .no_marker_menu {
     list-style: none;
+    padding-inline-start: 0px;
+    margin-block-start: auto;
+    margin-block-end: auto;
 }
 
-.article_menu {
+.article_common {
     display: flex;
-    flex-direction:  row;
+    flex-direction: row;
     justify-content: space-between;
+}
+
+.article_block {
+    width: 80%;
+}
+
+.article_category {
+    width: 20%;
 }

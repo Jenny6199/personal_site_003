@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Article
+from .models import Article, ArticleCategory
 from .forms import AddArticleForm
 
 main_menu = {
@@ -32,10 +32,12 @@ def index(request):
 
 def articles(request):
     """view for page articles"""
-    articles_list = Article.objects.all()
+    articles_list = Article.objects.filter(is_published=True)
+    articles_category_list = ArticleCategory.objects.all()
     context = {
         'title': 'статьи',
         'articles': articles_list,
+        'category_list': articles_category_list,
         'menu': main_menu,
     }
     return render(request, 'mainapp/articles.html', context=context)

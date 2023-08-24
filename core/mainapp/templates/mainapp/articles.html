@@ -1,32 +1,46 @@
 {% extends 'mainapp/base.html' %}
 
 {% block content %}
-<div class="article_menu">
-    <h3>Список статей</h3>
-    <h3><a href="{% url 'add_article' %}">Добавить статью</a></h3>
-</div>
+    <div class="article_common">
+        <!-- Левая колонка -->
+        <div class="simple_card article_category">
+            <h3><a href="{% url 'add_article' %}">Добавить статью</a></h3>
+            <hr/>
+            <h3>Статьи по категориям:</h3>
+            <ul class="no_marker_menu">
+                {% for cat_name in category_list %}
+                    <li>
+                        <h4><a href="">{{ cat_name.name }}</a></h4>
+                    </li>
+                {% endfor %}
+            </ul>
 
-<ul class="no_marker_menu">
-    {% if articles %}
-        {% for el in articles %}
-        <li>
-            <div class="simple_card">
-                <h2>{{ el.title }}</h2>
-                <h4>Автор: {{ el.author }}</h4>
-                <h5>Дата публикации: {{ el.updated_time }}</h5>
-                <h5>Количество просмотров: {{ el.visitors_counter }} </h5>
-                <p>
-                   <a href="/article/{{ el.slug }}">Читать статью</a>
-                </p>
-            </div>
-        </li>
-        {% endfor %}
-    {% else %}
-        <li>
-            <div class="">
-                <h3>Здесь пока ничего нет. Вероятно скоро появится</h3>
-            </div>
-        </li>
-    {% endif %}
-</ul>
+        </div>
+        <!-- Правая колонка -->
+        <div class="article_block">
+            <ul class="no_marker_menu">
+                {% if articles %}
+                    {% for el in articles %}
+                        <li>
+                            <div class="simple_card">
+                                <h2>{{ el.title }}</h2>
+                                <h4>Автор: {{ el.author }}</h4>
+                                <h5>Дата публикации: {{ el.updated_time }}</h5>
+                                <h5>Количество просмотров: {{ el.visitors_counter }} </h5>
+                                <p>
+                                   <a href="/article/{{ el.slug }}">Читать статью</a>
+                                </p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li>
+                        <div class="">
+                            <h3>Здесь пока ничего нет. Вероятно скоро появится</h3>
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 {% endblock %}
