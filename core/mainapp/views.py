@@ -43,6 +43,19 @@ def articles(request):
     return render(request, 'mainapp/articles.html', context=context)
 
 
+def articles_categories(request, cat_slug):
+    """view for page articles_by_categories"""
+    articles_list = Article.objects.filter(category=cat_slug, is_published=True)
+    articles_category_list = ArticleCategory.objects.all()
+    context = {
+        'title': 'статьи',
+        'articles': articles_list,
+        'category_list': articles_category_list,
+        'menu': main_menu,
+    }
+    return render(request, 'mainapp/articles.html', context=context)
+
+
 def add_article(request):
     if request.method == 'POST':
         form = AddArticleForm(request.POST, request.FILES)
