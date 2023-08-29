@@ -31,7 +31,10 @@ def index(request):
 
 
 def articles(request):
-    """view for page articles"""
+    """
+    view for page articles
+    :param - request
+    """
     articles_list = Article.objects.filter(is_published=True)
     articles_category_list = ArticleCategory.objects.all()
     context = {
@@ -44,8 +47,16 @@ def articles(request):
 
 
 def articles_categories(request, cat_slug):
-    """view for page articles_by_categories"""
-    articles_list = Article.objects.filter(category=cat_slug, is_published=True)
+    """
+    View for page articles_by_categories
+    :param - request
+    :param - cat_slug
+    """
+    selected_category = ArticleCategory.objects.get(slug=cat_slug)
+    articles_list = Article.objects.filter(
+        category=selected_category.pk,
+        is_published=True
+    )
     articles_category_list = ArticleCategory.objects.all()
     context = {
         'title': 'статьи',
@@ -72,6 +83,24 @@ def add_article(request):
     return render(request, 'mainapp/add_article.html', context=context)
 
 
+def show_article(request, article_slug):
+    """
+    View for read_article page
+    :param request
+    :param article_slug
+    """
+    article = get_object_or_404(Article, slug=article_slug)
+    article.visitors_counter += 1
+    article.save()
+    context = {
+        'title': 'просмотр статьи',
+        'text': article.text,
+        'menu': main_menu,
+        'selected_category': article.category,
+    }
+    return render(request, 'mainapp/read_article.html', context=context)
+
+
 def news(request):
     """view for page news"""
     context = {
@@ -95,17 +124,3 @@ def contacts(request):
         'menu': main_menu,
     }
     return render(request, 'mainapp/contacts.html', context=context)
-
-
-def show_article(request, article_slug):
-    """view for read_article page"""
-    article = get_object_or_404(Article, slug=article_slug)
-    article.visitors_counter += 1
-    article.save()
-    context = {
-        'title': 'просмотр статьи',
-        'text': article.text,
-        'menu': main_menu,
-        'selected_category': article.category,
-    }
-    return render(request, 'mainapp/read_article.html', context=context)

@@ -13,7 +13,7 @@
                     </li>
                 {% for cat_name in category_list %}
                     <li>
-                        <h4><a href="/articles/categories/{{ cat_name.pk }}">{{ cat_name.name }}</a></h4>
+                        <h4><a href="/articles/categories/{{ cat_name.slug }}">{{ cat_name.name }}</a></h4>
                     </li>
                 {% endfor %}
             </ul>
