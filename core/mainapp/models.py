@@ -16,7 +16,6 @@ class ArticleCategory(models.Model):
         return f'{self.name}'
 
 
-
 class Author(models.Model):
     """
     Model for author for site's mainapp

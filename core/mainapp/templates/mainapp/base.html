@@ -11,7 +11,7 @@
             <!-- Блок верхней части сайта -->
             <header class="header block">
                 {% block header %}
-                <h2 class="">{{ title | title }}</h2>
+                <h2 class="" id="top">{{ title | title }}</h2>
                     <!-- Блок меню -->
                     {% block menu %}
                         {% include 'includes/inc-main-menu.html' %}
@@ -28,7 +28,22 @@
             <!-- Блок нижней части сайта -->
             <footer class="footer block">
                 {% block footer %}
-                    <h2 class="">Footer</h2>
+                    <div class="left_column">
+                        <h5>&copy 2023</h5>
+                        <h5>
+                            <a href="#top">Вверх</a>
+                        </h5>
+                    </div>
+                    <div class="center"></div>
+                    <div class="right_column">
+                        <div></div>
+                        <div>
+                            <p>Разработка сайта:</p>
+                            <p>Maksim Sapunov</p>
+                            <p>Jenny6199@yandex.ru</p>
+                        </div>
+                    </div>
+
                 {% endblock %}
             </footer>
         </div>

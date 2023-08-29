@@ -14,7 +14,6 @@ body {
     flex-direction: column;
     max-width: 1140px;
     margin: 0 auto;
-
 }
 
 header {
@@ -37,6 +36,8 @@ footer {
   text-align: center;
   min-height: 10vh;
   margin-top: 10px;
+  display: flex;
+  flex-direction: row;
 }
 
 .block {
@@ -94,4 +95,16 @@ border: 1px solid black;
 
 .article_category {
     width: 20%;
+}
+
+.right_column {
+    min-width: 25%;
+}
+
+.left_column {
+    min-width: 25%;
+}
+
+.center {
+    min-width: 50%;
 }
