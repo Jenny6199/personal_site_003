@@ -25,14 +25,24 @@
                 {% if articles %}
                     {% for el in articles %}
                         <li>
-                            <div class="simple_card">
-                                <h2>{{ el.title }}</h2>
-                                <h4>Автор: {{ el.author }}</h4>
-                                <h5>Дата публикации: {{ el.updated_time }}</h5>
-                                <h5>Количество просмотров: {{ el.visitors_counter }} </h5>
-                                <p>
-                                   <a href="/article/{{ el.slug }}">Читать статью</a>
-                                </p>
+                            <div class="simple_card flex_row">
+                                <div class="article_image">
+                                    {% if el.image %}
+                                        <img src="{{ el.image }}" alt="" class="article_image">
+                                    {% else %}
+                                        <img src="static/mainapp/images/no_image.png" class="article_image" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="article_info">
+                                    <h2>{{ el.title }}</h2>
+                                    <h4>Автор: {{ el.author }}</h4>
+                                    <h5>Дата публикации: {{ el.updated_time }}</h5>
+                                    <h5>Количество просмотров: {{ el.visitors_counter }} </h5>
+                                    <p>
+                                       <a href="/article/{{ el.slug }}">Читать статью</a>
+                                    </p>
+                                </div>
+
                             </div>
                         </li>
                     {% endfor %}
