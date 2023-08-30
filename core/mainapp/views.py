@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Article, ArticleCategory
 from .forms import AddArticleForm
+from django.views.generic import ListView
 
 main_menu = {
                 'главная': '/',
@@ -11,6 +12,21 @@ main_menu = {
                 'контакты': '/contacts',
                 'ещё': '/',
     }
+
+
+# ARTICLES PAGE
+class ArticlesPage(ListView):
+    model = Article
+    context_object_name = 'articles'
+
+    def get_queryset(self):
+        return Article.objects.filter(is_published=True)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = main_menu
+        context['title'] = 'Статьи'
+        return context
 
 
 def index(request):
@@ -43,7 +59,7 @@ def articles(request):
         'category_list': articles_category_list,
         'menu': main_menu,
     }
-    return render(request, 'mainapp/articles.html', context=context)
+    return render(request, 'mainapp/article_list.html', context=context)
 
 
 def articles_categories(request, cat_slug):
@@ -64,7 +80,7 @@ def articles_categories(request, cat_slug):
         'category_list': articles_category_list,
         'menu': main_menu,
     }
-    return render(request, 'mainapp/articles.html', context=context)
+    return render(request, 'mainapp/article_list.html', context=context)
 
 
 def add_article(request):
