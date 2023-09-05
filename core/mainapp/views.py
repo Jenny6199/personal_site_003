@@ -30,9 +30,10 @@ class ArticlesPage(ListView):
         return context
 
 
-class AddArticle(FormView):
+class AddArticle(CreateView):
     """CBV for create new article"""
-    form_class = AddArticleForm
+    model = Article
+    fields = ['title', 'slug', 'category', 'author', 'image', 'text', ]
     template_name = 'mainapp/add_article.html'
     success_url = '/articles/'
 
@@ -51,6 +52,13 @@ class AddAuthor(CreateView):
     model = Author
     fields = ['surname', 'name', 'parent_name', 'slug', 'speciality', ]
     success_url = '/articles/'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = main_menu
+        context['title'] = 'Добавление автора'
+        context['category_list'] = ArticleCategory.objects.all()
+        return context
 
 
 def index(request):

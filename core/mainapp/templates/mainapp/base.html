@@ -11,7 +11,7 @@
             <!-- Блок верхней части сайта -->
             <header class="header block">
                 {% block header %}
-                <h2 class="" id="top">{{ title | title }}</h2>
+                <h2 class="" id="top">{{ title | capfirst }}</h2>
                     <!-- Блок меню -->
                     {% block menu %}
                         {% include 'includes/inc-main-menu.html' %}
