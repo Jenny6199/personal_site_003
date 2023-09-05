@@ -5,6 +5,7 @@
         <!-- Левая колонка -->
         <div class="simple_card article_category">
             <h3><a href="{% url 'add_article' %}">Добавить статью</a></h3>
+            <h3><a href="{% url 'add_author' %}">Добавить автора</a></h3>
             <hr/>
             <h3>Статьи по категориям:</h3>
             <ul class="no_marker_menu">
@@ -30,7 +31,7 @@
                                     {% if el.image %}
                                         <img src="{{ el.image }}" alt="" class="article_image">
                                     {% else %}
-                                        <img src="static/mainapp/images/no_image.png" class="article_image" alt="">
+                                        <img src="no_image.png" class="article_image" alt="">
                                     {% endif %}
                                 </div>
                                 <div class="article_info">

@@ -1,9 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Article, ArticleCategory
+from .models import Article, ArticleCategory, Author
 from .forms import AddArticleForm
-from django.views.generic import ListView
+from django.views.generic import ListView, FormView, CreateView
 
 main_menu = {
                 'главная': '/',
@@ -14,8 +14,8 @@ main_menu = {
     }
 
 
-# ARTICLES PAGE
 class ArticlesPage(ListView):
+    """CBV for Articles page"""
     model = Article
     context_object_name = 'articles'
 
@@ -26,7 +26,31 @@ class ArticlesPage(ListView):
         context = super().get_context_data(**kwargs)
         context['menu'] = main_menu
         context['title'] = 'Статьи'
+        context['category_list'] = ArticleCategory.objects.all()
         return context
+
+
+class AddArticle(FormView):
+    """CBV for create new article"""
+    form_class = AddArticleForm
+    template_name = 'mainapp/add_article.html'
+    success_url = '/articles/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = main_menu
+        context['title'] = 'Добавление статьи'
+        return context
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+class AddAuthor(CreateView):
+    model = Author
+    fields = ['surname', 'name', 'parent_name', 'slug', 'speciality', ]
+    success_url = '/articles/'
 
 
 def index(request):
@@ -97,6 +121,9 @@ def add_article(request):
         'form': form,
     }
     return render(request, 'mainapp/add_article.html', context=context)
+
+
+
 
 
 def show_article(request, article_slug):
