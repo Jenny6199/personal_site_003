@@ -74,6 +74,7 @@ a.main-menu {
     background-color: white;
     margin: 5px;
     padding: 10px;
+    height: max-content;
 }
 
 .no_marker_menu {
@@ -90,10 +91,14 @@ a.main-menu {
 }
 
 .article_block {
-    width: 80%;
+    width: 60%;
 }
 
 .article_category {
+    width: 20%;
+}
+
+.edit_block {
     width: 20%;
 }
 

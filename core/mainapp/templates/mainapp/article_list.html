@@ -2,11 +2,8 @@
 
 {% block content %}
     <div class="article_common">
-        <!-- Левая колонка -->
+        <!-- Блок категорий -->
         <div class="simple_card article_category">
-            <h3><a href="{% url 'add_article' %}">Добавить статью</a></h3>
-            <h3><a href="{% url 'add_author' %}">Добавить автора</a></h3>
-            <hr/>
             <h3>Статьи по категориям:</h3>
             <ul class="no_marker_menu">
                     <li>
@@ -20,7 +17,7 @@
             </ul>
 
         </div>
-        <!-- Правая колонка -->
+        <!-- Блок статей -->
         <div class="article_block">
             <ul class="no_marker_menu">
                 {% if articles %}
@@ -55,6 +52,11 @@
                     </li>
                 {% endif %}
             </ul>
+        </div>
+        <!-- Блок редактирования -->
+        <div class="simple_card edit_block">
+            <h3><a href="{% url 'add_article' %}">Добавить статью</a></h3>
+            <h3><a href="{% url 'add_author' %}">Добавить автора</a></h3>
         </div>
     </div>
 {% endblock %}
