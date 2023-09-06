@@ -39,6 +39,10 @@ class Author(models.Model):
     def __str__(self):
         return f'{self.surname} {self.name}'
 
+    def update_article_counter(self):
+        self.article_counter += 1
+        self.save()
+
 
 class Article(models.Model):
     """

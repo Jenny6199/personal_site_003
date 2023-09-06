@@ -45,6 +45,8 @@ class AddArticle(CreateView):
 
     def form_valid(self, form):
         form.save()
+        author = Author.objects.get(pk=form.data['author'])
+        author.update_article_counter()
         return super().form_valid(form)
 
 
@@ -129,9 +131,6 @@ def add_article(request):
         'form': form,
     }
     return render(request, 'mainapp/add_article.html', context=context)
-
-
-
 
 
 def show_article(request, article_slug):
