@@ -7,11 +7,21 @@
             <h3>Статьи по категориям:</h3>
             <ul class="no_marker_menu">
                     <li>
-                        <h4><a href="/articles/">Все категории</a></h4>
+                        <h4>
+                            <a href="/articles/"
+                               {% if not cat_selected %}
+                               class="selected"
+                               {% endif %}
+                            >Все категории</a>
+                        </h4>
                     </li>
                 {% for cat_name in category_list %}
                     <li>
-                        <h4><a href="/articles/categories/{{ cat_name.slug }}">{{ cat_name.name }}</a></h4>
+                        <h4><a href="/articles/categories/{{ cat_name.slug }}"
+                               {% if cat_name.pk == cat_selected %}
+                               class="selected"
+                               {% endif %}
+                            >{{ cat_name.name }}</a></h4>
                     </li>
                 {% endfor %}
             </ul>

@@ -109,10 +109,11 @@ def articles_categories(request, cat_slug):
     )
     articles_category_list = ArticleCategory.objects.all()
     context = {
-        'title': 'статьи',
+        'title': f'статьи по категориям - {selected_category}',
         'articles': articles_list,
         'category_list': articles_category_list,
         'menu': main_menu,
+        'cat_selected': selected_category.pk,
     }
     return render(request, 'mainapp/article_list.html', context=context)
 

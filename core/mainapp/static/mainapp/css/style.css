@@ -129,3 +129,7 @@ a.main-menu {
     display: flex;
     flex-direction: row;
 }
+
+.selected {
+    color: red;
+}
