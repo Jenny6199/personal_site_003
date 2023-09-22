@@ -155,22 +155,22 @@ def add_article(request):
     return render(request, 'mainapp/add_article.html', context=context)
 
 
-def show_article(request, article_slug):
-    """
-    View for read_article page
-    :param request
-    :param article_slug
-    """
-    article = get_object_or_404(Article, slug=article_slug)
-    article.visitors_counter += 1
-    article.save()
-    context = {
-        'title': 'просмотр статьи',
-        'text': article.text,
-        'menu': main_menu,
-        'selected_category': article.category,
-    }
-    return render(request, 'mainapp/read_article.html', context=context)
+# def show_article(request, article_slug):
+#     """
+#     View for read_article page
+#     :param request
+#     :param article_slug
+#     """
+#     article = get_object_or_404(Article, slug=article_slug)
+#     article.visitors_counter += 1
+#     article.save()
+#     context = {
+#         'title': 'просмотр статьи',
+#         'text': article.text,
+#         'menu': main_menu,
+#         'selected_category': article.category,
+#     }
+#     return render(request, 'mainapp/read_article.html', context=context)
 
 
 def news(request):

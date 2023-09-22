@@ -21,7 +21,7 @@
                                {% if cat_name.pk == cat_selected %}
                                class="selected"
                                {% endif %}
-                            >{{ cat_name.name }}</a></h4>
+                            >{{ cat_name.name|capfirst }}</a></h4>
                     </li>
                 {% endfor %}
             </ul>

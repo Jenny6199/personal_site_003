@@ -4,8 +4,8 @@ from django.urls import reverse
 
 class ArticleCategory(models.Model):
     """Model for separate articles by categories"""
-    name = models.CharField(max_length=255, verbose_name='cat_name')
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='cat_slug')
+    name = models.CharField(max_length=255, verbose_name='название категории')
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='слаг')
 
     class Meta:
         ordering = ['name']
@@ -61,7 +61,7 @@ class Article(models.Model):
                                )
     image = models.ImageField(blank=True, upload_to='images/', verbose_name='изображение')
     text = models.TextField(default='', verbose_name='текст статьи', blank=False)
-    created_time = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='дата сознания')
+    created_time = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='дата создания')
     updated_time = models.DateTimeField(auto_now=True, verbose_name='дата обновления')
     visitors_counter = models.PositiveIntegerField(default=0, verbose_name='количество просмотров')
     is_published = models.BooleanField(default=False, verbose_name='публикация на сайте')
