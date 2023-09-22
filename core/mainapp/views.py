@@ -1,9 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from .models import Article, ArticleCategory, Author
 from .forms import AddArticleForm
-from django.views.generic import ListView, FormView, CreateView
+from django.views.generic import ListView, DetailView, CreateView
 
 main_menu = {
                 'главная': '/',
@@ -60,6 +60,27 @@ class AddAuthor(CreateView):
         context['menu'] = main_menu
         context['title'] = 'Добавление автора'
         context['category_list'] = ArticleCategory.objects.all()
+        return context
+
+
+class ArticleRead(DetailView):
+    """class for page read_article"""
+    model = Article
+    template_name = 'mainapp/read_article.html'
+
+    def get_object(self):
+        article = get_object_or_404(Article, slug=self.kwargs['article_slug'])
+        article.visitors_counter += 1
+        article.save()
+        return article
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'просмотр статьи - {self.object.slug}'
+        context['text'] = self.object.text
+        context['menu'] = main_menu
+        context['selected_category'] = self.object.category
         return context
 
 
