@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Article, ArticleCategory, Author
 from .forms import AddArticleForm
 from django.views.generic import ListView, DetailView, CreateView
+from django.core.paginator import Paginator
 
 main_menu = {
                 'главная': '/',
@@ -18,6 +19,7 @@ class ArticlesPage(ListView):
     """CBV for Articles page"""
     model = Article
     context_object_name = 'articles'
+    paginate_by = 3
 
     def get_queryset(self):
         return Article.objects.filter(is_published=True)

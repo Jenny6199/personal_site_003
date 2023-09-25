@@ -23,6 +23,20 @@
             <main class="main block">
                 {% block content %}
                 {% endblock %}
+                </hr>
+                <div class="simple_card flex_row">
+                    <p>Список страниц</p>
+                    <ul class="flex_row menu">
+                        {% for p in page_obj.paginator.page_range %}
+                            {% if page_obj.number == p &}
+                                <li>&nbsp;{{ p }}&nbsp;</li>
+                                <li>
+                                    <a style="text-decoration: none;" href="?page={{ p }}">&nbsp;{{ p }}&nbsp; </a>
+                                </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
             </main>
 
             <!-- Блок нижней части сайта -->
