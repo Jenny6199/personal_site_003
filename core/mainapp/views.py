@@ -16,7 +16,10 @@ main_menu = {
 
 
 class ArticlesPage(ListView):
-    """CBV for Articles page"""
+    """
+    CBV for Articles page
+    Отображение всех статей
+    """
     model = Article
     context_object_name = 'articles'
     paginate_by = 3
@@ -33,7 +36,10 @@ class ArticlesPage(ListView):
 
 
 class AddArticle(CreateView):
-    """CBV for create new article"""
+    """
+    CBV for create new article
+    Добавление статьи на сайте вне админ панели.
+    """
     model = Article
     fields = ['title', 'slug', 'category', 'author', 'image', 'text', ]
     template_name = 'mainapp/add_article.html'
@@ -53,6 +59,10 @@ class AddArticle(CreateView):
 
 
 class AddAuthor(CreateView):
+    """
+    CBV for create new author
+    Добавление автора на сайте вне админ панели
+    """
     model = Author
     fields = ['surname', 'name', 'parent_name', 'slug', 'speciality', ]
     success_url = '/articles/'
@@ -79,7 +89,7 @@ class ArticleRead(DetailView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        context['title'] = f'просмотр статьи - {self.object.slug}'
+        context['title'] = f'просмотр статьи - {self.object.title}'
         context['text'] = self.object.text
         context['menu'] = main_menu
         context['selected_category'] = self.object.category
