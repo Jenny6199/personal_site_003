@@ -2,7 +2,12 @@
 {% block content %}
     <p>
         {% autoescape on %}
-            {{ info|linebreaks }}
+            <div class="simple_card">
+                <p>
+                   {{ info|linebreaks }}
+                </p>
+            </div>
+
         {% endautoescape %}
     </p>
 {% endblock %}
