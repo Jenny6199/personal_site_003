@@ -70,3 +70,19 @@
         </div>
     </div>
 {% endblock %}
+{% block paginator %}
+    <div class="simple_card flex_row">
+        <p>Список страниц</p>
+        <ul class="flex_row menu">
+            {% for p in page_obj.paginator.page_range %}
+                {% if page_obj.number == p %}
+                    <li>&nbsp;{{ p }}&nbsp;</li>
+                {% else %}
+                    <li>
+                        <a style="text-decoration: none;" href="?page={{ p }}">&nbsp;{{ p }}&nbsp; </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
