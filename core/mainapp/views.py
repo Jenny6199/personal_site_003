@@ -1,10 +1,7 @@
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from .models import Article, ArticleCategory, Author
-from .forms import AddArticleForm
 from django.views.generic import ListView, DetailView, CreateView
-from django.core.paginator import Paginator
+
 
 main_menu = {
                 'главная': '/',
@@ -31,6 +28,26 @@ class ArticlesPage(ListView):
         context = super().get_context_data(**kwargs)
         context['menu'] = main_menu
         context['title'] = 'Статьи'
+        context['category_list'] = ArticleCategory.objects.all()
+        return context
+
+
+class ArticlesByCategories(ListView):
+    """
+    CBV for page articles by categories
+    """
+    model = Article
+    context_object_name = 'articles'
+    paginate_by = 3
+
+    def get_queryset(self):
+        self.selected_category = ArticleCategory.objects.get(slug=self.kwargs['cat_slug'])
+        return Article.objects.filter(category=self.selected_category.pk, is_published=True)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = main_menu
+        context['title'] = f'Статьи по категориям - {self.selected_category}'
         context['category_list'] = ArticleCategory.objects.all()
         return context
 
@@ -127,62 +144,6 @@ def articles(request):
         'menu': main_menu,
     }
     return render(request, 'mainapp/article_list.html', context=context)
-
-
-def articles_categories(request, cat_slug):
-    """
-    View for page articles_by_categories
-    :param - request
-    :param - cat_slug
-    """
-    selected_category = ArticleCategory.objects.get(slug=cat_slug)
-    articles_list = Article.objects.filter(
-        category=selected_category.pk,
-        is_published=True
-    )
-    articles_category_list = ArticleCategory.objects.all()
-    context = {
-        'title': f'статьи по категориям - {selected_category}',
-        'articles': articles_list,
-        'category_list': articles_category_list,
-        'menu': main_menu,
-        'cat_selected': selected_category.pk,
-    }
-    return render(request, 'mainapp/article_list.html', context=context)
-
-
-def add_article(request):
-    if request.method == 'POST':
-        form = AddArticleForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('articles'))
-    else:
-        form = AddArticleForm()
-    context = {
-        'title': 'добавление статьи',
-        'menu': main_menu,
-        'form': form,
-    }
-    return render(request, 'mainapp/add_article.html', context=context)
-
-
-# def show_article(request, article_slug):
-#     """
-#     View for read_article page
-#     :param request
-#     :param article_slug
-#     """
-#     article = get_object_or_404(Article, slug=article_slug)
-#     article.visitors_counter += 1
-#     article.save()
-#     context = {
-#         'title': 'просмотр статьи',
-#         'text': article.text,
-#         'menu': main_menu,
-#         'selected_category': article.category,
-#     }
-#     return render(request, 'mainapp/read_article.html', context=context)
 
 
 def news(request):

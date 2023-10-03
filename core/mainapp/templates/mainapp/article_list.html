@@ -76,7 +76,7 @@
         <ul class="flex_row menu">
             {% for p in page_obj.paginator.page_range %}
                 {% if page_obj.number == p %}
-                    <li>&nbsp;{{ p }}&nbsp;</li>
+                    <li>&nbsp;[ {{ p }} ]&nbsp;</li>
                 {% else %}
                     <li>
                         <a style="text-decoration: none;" href="?page={{ p }}">&nbsp;{{ p }}&nbsp; </a>
