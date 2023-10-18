@@ -38,7 +38,8 @@ class ArticlesByCategories(ListView):
     """
     model = Article
     context_object_name = 'articles'
-    paginate_by = 3
+    paginate_by = 5
+    selected_category = None
 
     def get_queryset(self):
         self.selected_category = ArticleCategory.objects.get(slug=self.kwargs['cat_slug'])
