@@ -19,7 +19,7 @@ class ArticlesPage(ListView):
     """
     model = Article
     context_object_name = 'articles'
-    paginate_by = 3
+    paginate_by = 10
 
     def get_queryset(self):
         return Article.objects.filter(is_published=True)

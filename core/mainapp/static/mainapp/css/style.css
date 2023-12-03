@@ -77,6 +77,10 @@ a.main-menu {
     height: max-content;
 }
 
+.text_left {
+    text-align: left;
+}
+
 .no_marker_menu {
     list-style: none;
     padding-inline-start: 0px;
